@@ -10,7 +10,7 @@
   
   <title>
     
-      open-falcon告警信息发送钉钉 | Vacker
+      couchbase 入门 | Vacker
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -144,8 +144,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>open-falcon告警信息发送钉钉</h2>
-  <p class="post-date">2019-05-30</p>
+  <h2>couchbase 入门</h2>
+  <p class="post-date">2019-07-04</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -153,56 +153,72 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="open-falcon-告警信息发送钉钉告警"><a href="#open-falcon-告警信息发送钉钉告警" class="headerlink" title="open-falcon 告警信息发送钉钉告警"></a>open-falcon 告警信息发送钉钉告警</h1><p> 新入职公司目前使用的open-falcon监控，但是open-falcon监控支持短信，企业微信，邮件告警，对于现状，目前就只有邮件告警。其他前面两种都没有考虑。但邮件不是很及时。所以想将告警信息接入钉钉机器人。</p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ul>
-<li>github 地址：<a href="https://github.com/ihangji/open-falcon-dingding" target="_blank" rel="noopener">https://github.com/ihangji/open-falcon-dingding</a></li>
-</ul>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
-<li>到open-falcon的alarm的/config/cgf.json配置post发送的端口。配置在im,sm上面都可以，使用一个没有用到的。</li>
-<li>修改该程序的config配置</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>配置</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>port</td>
-<td>为open-falcon alarm配置上监听的端口</td>
-</tr>
-<tr>
-<td>host</td>
-<td>监听主机地址</td>
-</tr>
-<tr>
-<td>tokenin</td>
-<td>钉钉机器人的tokenin</td>
-</tr>
-<tr>
-<td>path</td>
-<td>日志存放的地址。默认为当前目录</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>在open-falcon 页面上，去吧要发送告警信息@的人的手机号写上。根据第一点，添在对应的位置。然后修改告警等级，改为3以下。</li>
-</ul>
-<hr>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python reboot_ding.py</span><br></pre></td></tr></table></figure>
+    <section class="markdown-content"><h1 id="couchbase-入门"><a href="#couchbase-入门" class="headerlink" title="couchbase 入门"></a>couchbase 入门</h1><h2 id="couchbase-概述"><a href="#couchbase-概述" class="headerlink" title="couchbase 概述"></a>couchbase 概述</h2><p>  Couchbase Server是一个开源，分布式，NoSQL面向文档的参与数据库。它公开了一个带有托管缓存的快速键值存储，用于亚毫秒数据操作，专门用于快速查询的索引器和用于执行类似SQL的查询的强大查询引擎。对于移动和物联网环境，Couchbase还可以在设备上本地运行并管理与服务器的同步。</p>
+<h2 id="快速安装"><a href="#快速安装" class="headerlink" title="快速安装"></a>快速安装</h2><ol>
+<li>下载安装docker</li>
+<li>安装couchbase ee版本</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -t --name db -p 8091-8094：8091-8094 -p 11210：11210 couchbase / server-sandbox：6.0.0</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Note: 可以使用supervisor来进行托管启动</p>
+<p>没有后台运行</p>
 </blockquote>
+<h2 id="浏览服务器配置"><a href="#浏览服务器配置" class="headerlink" title="浏览服务器配置"></a>浏览服务器配置</h2><ol>
+<li>访问控制台并登录<br>浏览器输入<a href="http://localhost:8091,输入用户名，密码" target="_blank" rel="noopener">http://localhost:8091,输入用户名，密码</a></li>
+<li>检查你得bucket,和文档<br>点击buckets,然后旁边就是你的文档，点击文档就可以进行查看，编辑</li>
+</ol>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><ol>
+<li>couchbase 的数据模型是json，然后底层是一个key,value的数据模型</li>
+<li>保存文档时，Couchbase Server会生成与文档关联的元数据。元数据可能如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;meta&quot;: &#123;</span><br><span class="line">    &quot;id&quot;: &quot;airport_1306&quot;,</span><br><span class="line">    &quot;rev&quot;: &quot;1-1526338d1bbb00000000000002000000&quot;,</span><br><span class="line">    &quot;expiration&quot;: 0,</span><br><span class="line">    &quot;flags&quot;: 33554432,</span><br><span class="line">    &quot;type&quot;: &quot;json&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;xattrs&quot;: &#123;&#125;  //扩展属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>meta：属性，其值是已保存文档的标准元数据<br>id：保存文档的关键字。rev：修订版或序列号</p>
+</blockquote>
+<blockquote>
+<p>expiration：文档的到期时间（或生存时间）。如果非零，则确定从系统中删除文档的点</p>
+</blockquote>
+<ol start="3">
+<li>限制大小，couchbase在存储数据时，对key,value都有大小限制<br><img src="https://docs.couchbase.com/server/6.0/learn/_images/data/item-maximum-sizes.png" alt="image"></li>
+</ol>
+<h2 id="关于N1QL"><a href="#关于N1QL" class="headerlink" title="关于N1QL"></a>关于N1QL</h2><p>基本的N1QL查询包含以下部分：</p>
+<ul>
+<li>SELECT - 要返回的每个文档的字段。</li>
+<li>FROM - 要查看的数据桶。</li>
+<li>WHERE - 文件必须满足的条件。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT country FROM `travel-sample` WHERE name = &quot;Excel Airways&quot;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>couchbase 的数据模型是json的数据，使用N1QL进行查询，是再它的数据投影上进行查询。同时使用N1QL进行查询，你会发现如果你没有建立索引，那么它的性能没有关系型数据库好，如果建立索引，它的性能比大多NOSQL数据库好</p>
+</blockquote>
+<blockquote>
+<p>N1QL 支持大多数SQL函数，其实也就相当于SQL，只是有一些细微的差别</p>
+<ol>
+<li>使用 </li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/couchbase/bin</span><br><span class="line">./cbq -u Administrator -p password -engine=http://127.0.0.1:8091/</span><br><span class="line">cbq&gt; select * from buckets where xxx = &apos;xxx&apos;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用web-query进行查询</li>
+</ol>
+<ul>
+<li>登录web管理页面，点击左边query,进行查询</li>
+</ul>
+<h2 id="桶、内存和存储"><a href="#桶、内存和存储" class="headerlink" title="桶、内存和存储"></a>桶、内存和存储</h2><ol>
+<li>couchbase中的桶就相当于关系型数据库中的库</li>
+<li>桶的数据会存放在两个地方，内存中，和磁盘中，其中存储在内存中需要配置内存限制额，当存放在内存的数据超过内存配额，那么程序会删除些数据。如果在用户查找时内存中没有这部分数据。那么couchbase 会从磁盘中找到，然后更新到内存。</li>
+</ol>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#open-falcon">
-    <span class="tag-code">open-falcon</span>
+  <a href="/tags#couchbase">
+    <span class="tag-code">couchbase</span>
+  </a>
+
+  <a href="/tags#NOSQL">
+    <span class="tag-code">NOSQL</span>
   </a>
 
       </div>
@@ -213,20 +229,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2019/05/29/elasticsearch学习/">
+      <a class="nav-left" href="/2019/05/30/open-falcon告警信息发送钉钉/">
         <span class="nav-arrow">← </span>
         
-          elasticseach 学习
+          open-falcon告警信息发送钉钉
         
       </a>
     
-    
-      <a class="nav-right" href="/2019/07/04/couchbase-教程/">
-        
-          couchbase 入门
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -251,7 +260,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#open-falcon-告警信息发送钉钉告警"><span class="toc-nav-text">open-falcon 告警信息发送钉钉告警</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#下载"><span class="toc-nav-text">下载</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置"><span class="toc-nav-text">配置</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#启动"><span class="toc-nav-text">启动</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#couchbase-入门"><span class="toc-nav-text">couchbase 入门</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#couchbase-概述"><span class="toc-nav-text">couchbase 概述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#快速安装"><span class="toc-nav-text">快速安装</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#浏览服务器配置"><span class="toc-nav-text">浏览服务器配置</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#数据"><span class="toc-nav-text">数据</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#关于N1QL"><span class="toc-nav-text">关于N1QL</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#桶、内存和存储"><span class="toc-nav-text">桶、内存和存储</span></a></li></ol></li></ol>
     
   </div>
 </aside>
@@ -261,7 +270,7 @@
 
 <script>
   (function () {
-    var url = 'http://www.binary.pub/2019/05/30/open-falcon告警信息发送钉钉/';
+    var url = 'http://www.binary.pub/2019/07/04/couchbase-教程/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -323,7 +332,7 @@
     var gitmentConfig = "ihangji";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "open-falcon告警信息发送钉钉",
+        id: "couchbase 入门",
         owner: "ihangji",
         repo: "ihangji.github.io",
         oauth: {
